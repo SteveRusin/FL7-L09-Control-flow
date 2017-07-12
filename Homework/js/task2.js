@@ -1,59 +1,58 @@
 var start = confirm('Hi! Do you want to start the game?');
 var askContinue = true;
 var startAgain = true;
-var counter = 0;
-var prize = 1;
+var triplePrize = 1;
+var doubleNumber = 1;
 var prizeTotal = 0;
-var coef = 1;
 
 if (start) {
 
     do {
 
+
         var randomNumber = Math.round(Math.random() * 5);
+        randomNumber *= doubleNumber;
+        doubleNumber *= 2;
         var tries = 3;
 
 
         do {
 
-            var userAnswer = parseInt(prompt('Try to guess the number from 0 to 5. You have ' + tries + ' tries remain!', ''));
+            var userAnswer = parseInt(prompt('Try to guess a number. You have ' + tries + ' tries remain!', ''));
+            
             if (isNaN(userAnswer)) {
                 alert('Enter a number value.');
-            }else if(userAnswer>5){
-                alert('Only numbers from 0 to 5 are available!');
             } else if (userAnswer === randomNumber) {
                 break;
             }
+            
             tries--;
+            
         } while (tries > 0)
 
-
         switch (tries) {
-          case 3:
-            prize = 10 * coef;
+        case 3:
+            prizeTotal += 10 * triplePrize;
             break;
-          case 2:
-            prize = 5 * coef;
+        case 2:
+            prizeTotal += 5 * triplePrize;
             break;
-          case 1:
-            prize = 2 * coef;
+        case 1:
+            prizeTotal += 2 * triplePrize;
             break;
-          default:
-            console.log('Your prize - ' + prize * 0 + '$');
+        default:
+            console.log('Your prize - 0$');
             startAgain = confirm('You lost! Do you want to play again?');
             break;
         }
 
 
         if (tries > 0) {
-            alert('Congratulations! You have won ' + prize + '$');
+            alert('Congratulations! You have won ' + prizeTotal + '$');
             askContinue = confirm('Do you want to continue?');
-            prizeTotal += prize;
-            counter++;
-            coef = 3 * counter;
+            triplePrize *= 3;
         } else {
-            counter = 0;
-            coef = 1;
+            triplePrize = 1;
             prizeTotal = 0;
         }
 
