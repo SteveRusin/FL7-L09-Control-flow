@@ -12,22 +12,21 @@ if (start) {
 
         var randomNumber = Math.round(Math.random() * 5);
         randomNumber *= doubleNumber;
-        doubleNumber *= 2;
         var tries = 3;
 
 
         do {
 
-            var userAnswer = parseInt(prompt('Try to guess a number. You have ' + tries + ' tries remain!', ''));
-            
+            var userAnswer = parseInt(prompt('Try to guess a number from 0 to ' + 5 * doubleNumber + '. You have ' + tries + ' tries remain!', ''));
+
             if (isNaN(userAnswer)) {
                 alert('Enter a number value.');
             } else if (userAnswer === randomNumber) {
                 break;
             }
-            
+
             tries--;
-            
+
         } while (tries > 0)
 
         switch (tries) {
@@ -51,7 +50,9 @@ if (start) {
             alert('Congratulations! You have won ' + prizeTotal + '$');
             askContinue = confirm('Do you want to continue?');
             triplePrize *= 3;
+            doubleNumber *= 2;
         } else {
+            doubleNumber = 1;
             triplePrize = 1;
             prizeTotal = 0;
         }
