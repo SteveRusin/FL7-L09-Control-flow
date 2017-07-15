@@ -27,7 +27,7 @@ if (start) {
 
             tries--;
 
-        } while (tries > 0)
+        } while (tries > 0);
 
         switch (tries) {
         case 3:
@@ -64,7 +64,7 @@ if (start) {
         }
 
 
-    } while (askContinue === true)
+    } while (askContinue === true);
 } else {
     console.log('You have not won a million today, but you could!');
 }
